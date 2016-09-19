@@ -1,0 +1,23 @@
+webapiv1:
+  image: petrogaida/simple-web-api_v1:latest
+  container_name: webapiv1
+
+webapiv1-2:
+  image: petrogaida/simple-web-api_v1:latest
+  container_name: webapiv1-2
+
+webapiv2:
+  image: petrogaida/simple-web-api_v2:latest
+  container_name: webapiv2
+
+nginxplus:
+  build: nginx
+  container_name: nginxplus
+  links:
+    - webapiv1
+    - webapiv1-2     
+    - webapiv2
+  ports:
+  - "80:80"
+  - "8080:8080"
+
